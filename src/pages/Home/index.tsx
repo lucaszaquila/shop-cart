@@ -25,9 +25,10 @@ const Home = (): JSX.Element => {
   const [products, setProducts] = useState<ProductFormatted[]>([]);
   const { addProduct, cart } = useCart();
 
-  const cartItemsAmount = cart.reduce((sumAmount, product) => {
-    return {...sumAmount, [product.id] : (sumAmount[product.id] ?? 0) + 1}
-  }, {} as CartItemsAmount)
+  const cartItemsAmount = cart.reduce((sumAmount, product) => ({
+    ...sumAmount, 
+    [product.id] : (sumAmount[product.id] ?? 0) + 1
+  }), {} as CartItemsAmount)
 
 
   useEffect(() => {
